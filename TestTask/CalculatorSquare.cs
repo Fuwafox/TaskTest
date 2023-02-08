@@ -2,33 +2,55 @@
 
 namespace TestTask
 {
+    /// <summary>
+    /// Вообще методы, которые не относятся к доступных для вычисления площади не должны быть публичными, но оставляю так из-за тестов
+    /// </summary>
     public static class Calculator
     {
-
-        public static double? CalculatorSquare(double[,] arrayСoordinates)
+        /// <summary>
+        /// Общий метод для вычисления площади с проверками на тип фигуры
+        /// </summary>
+        /// <param name="arrayСoordinates"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public static double CalculatorSquare(double[,] arrayСoordinates)
         {
             try
             {
-                double? result = null;
-                
-                    if (arrayСoordinates.Length == 2)
+                double result  ;
+                if (arrayСoordinates.Length < 4)
+                    throw new Exception("Точка - это не фигура.");
+                else
+                {
+                    if (arrayСoordinates.Length == 4)
                     {
-                        result = CicrleSquare(arrayСoordinates);
-                        return result;
+                        if (CheckEmpty(arrayСoordinates))
+                            throw new Exception("Точка - это не фигура.");
+                        else
+                        {
+                            result = CicrleSquare(arrayСoordinates);
+                            return result;
+                        }
                     }
                     else
                     {
-                        if (arrayСoordinates.Length == 3)
+                        if (arrayСoordinates.Length == 6)
                         {
-                            result = STriangle(arrayСoordinates);
+                            if (CheckEmpty(arrayСoordinates))
+                                throw new Exception("Две из трёх координат заполнины 0. Площадь треугольника не возможно посчитать по одному отрезку");
+                            else
+                            {
+                                result = STriangle(arrayСoordinates);
+                                return result;
+                            }
                         }
                         else
                         {
-                            if (arrayСoordinates.Length > 3)
-                                result = SquarePolygon(arrayСoordinates);
+                            result = SquarePolygon(arrayСoordinates);
+                            return result;
                         }
-                        return result;
-                    }                 
+                    }
+                }
             }
             catch(Exception ex) 
             {
@@ -36,6 +58,30 @@ namespace TestTask
             }
         }
 
+        /// <summary>
+        /// Проверка для треугольника и круга на 0 в координатах
+        /// </summary>
+        /// <param name="arrayСoordinates"></param>
+        /// <returns></returns>
+        public static bool CheckEmpty(double[,] arrayСoordinates)
+        {
+            int j = 0;
+            bool result = false;
+            for (int i = 0; i < (arrayСoordinates.Length / 2) ; i++)
+            { 
+                if (arrayСoordinates[i,0] == 0 && arrayСoordinates[i, 1] == 0) 
+                    j++;
+            }
+            if (j >= 2)
+                result = true;
+            return result; 
+        }
+        /// <summary>
+        /// Вычисление площади круга по радиусу
+        /// </summary>
+        /// <param name="arrayСoordinates"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public static double CicrleSquare(double[,] arrayСoordinates)
         {
             double _radius;
@@ -53,6 +99,15 @@ namespace TestTask
 
         }
 
+        /// <summary>
+        /// Вычисление длинны отрезка по координатам двух точек
+        /// </summary>
+        /// <param name="x1"></param>
+        /// <param name="y1"></param>
+        /// <param name="x2"></param>
+        /// <param name="y2"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public static double СalculationoftheSegment(double x1, double y1, double x2, double y2)
         {
             try
@@ -66,6 +121,13 @@ namespace TestTask
                 throw new Exception(ex.Message, ex);
             }
         }
+
+        /// <summary>
+        /// Метод для выявления по какой формуле вычислять площадь треугольника
+        /// </summary>
+        /// <param name="arrayСoordinates"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public static double STriangle(double[,] arrayСoordinates)
         {
             double A, B, C;
@@ -90,6 +152,14 @@ namespace TestTask
 
         }
 
+        /// <summary>
+        /// Проверка прямоугольный ли треугольник
+        /// </summary>
+        /// <param name="ab"></param>
+        /// <param name="ac"></param>
+        /// <param name="bc"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public static bool СheckingForRightAngles(double ab, double ac, double bc)
         {
             bool result = false ;
@@ -105,6 +175,13 @@ namespace TestTask
             }
         }
 
+        /// <summary>
+        /// Метод для подсчета суммы квадратов двух сторон
+        /// </summary>
+        /// <param name="seg1"></param>
+        /// <param name="seg2"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public static double Sum(double seg1, double seg2)
         {
             double result = 0 ;
@@ -120,6 +197,14 @@ namespace TestTask
 
         }
 
+        /// <summary>
+        /// Вычисление площади треугольника по 3-м сторонам
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="c"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public static double SquareTreugolnikaOnthreesides(double a, double b, double c)
         {
             try
@@ -134,11 +219,26 @@ namespace TestTask
             }
         }
 
+        /// <summary>
+        /// Вычиление периметра по 3 сторонам
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public static double СalculationoPerimeter(double a, double b, double c)
         {
             return (a + b + c) / 2;
         }
 
+        /// <summary>
+        /// Вычисление площади прямоугольного треугольника
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="c"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public static double SquareRightTriangle(double a, double b, double c)
         {
             double result;
@@ -168,23 +268,35 @@ namespace TestTask
             }
         }
 
+        /// <summary>
+        /// Сам посчет площади прямоугольного треугольника вынесен в отдельный метод
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static double SquareTriangle(double a, double b) 
         {
             return (a * b) / 2;
         }
 
+        /// <summary>
+        /// Вычисление площади многоугольника
+        /// </summary>
+        /// <param name="arrayСoordinates"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public static double SquarePolygon(double[,] arrayСoordinates)
         {
             double result;
             double sum1 = 0, sum2 = 0;
             try
             {
-                for (int i = 0; i < arrayСoordinates.Length - 2; i++)
+                for (int i = 0; i < (arrayСoordinates.Length/2)-1 ; i++)
                 {
-                    sum1 = sum1 + arrayСoordinates[i, 0] * arrayСoordinates[i + 1, 1];
-                    sum2 = sum2 - arrayСoordinates[i + 1, 0] * arrayСoordinates[i, 1];
+                    sum1 = sum1 + arrayСoordinates[i, 0] * arrayСoordinates[i + 1, 1] - arrayСoordinates[i + 1, 0] * arrayСoordinates[i, 1];
                 }
-                result = (1 / 2) * Math.Abs(sum1 + arrayСoordinates[arrayСoordinates.Length - 1, 0] * arrayСoordinates[0, 1] - sum2 - arrayСoordinates[arrayСoordinates.Length - 1, 1] * arrayСoordinates[0, 0]);
+                sum2 = sum1 + (arrayСoordinates[(arrayСoordinates.Length / 2) - 1, 0] * arrayСoordinates[0, 1]) - (arrayСoordinates[(arrayСoordinates.Length / 2) - 1, 1] * arrayСoordinates[0, 0]);
+                result = 0.5*Math.Abs(sum2);
                 return result;
             }
             catch (Exception ex)
