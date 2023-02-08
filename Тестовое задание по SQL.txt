@@ -1,0 +1,47 @@
+CREATE TABLE Category (
+  ID bigint(20) NOT NULL AUTO_INCREMENT,
+  Name varchar(255) NOT NULL,
+  PRIMARY KEY (ID)
+)
+ENGINE = INNODB,
+AUTO_INCREMENT = 3,
+AVG_ROW_LENGTH = 8192,
+CHARACTER SET utf8,
+COLLATE utf8_general_ci;
+
+CREATE TABLE Product (
+  ID bigint(20) NOT NULL AUTO_INCREMENT,
+  Name varchar(255) NOT NULL,
+  PRIMARY KEY (ID)
+)
+ENGINE = INNODB,
+AUTO_INCREMENT = 3,
+AVG_ROW_LENGTH = 8192,
+CHARACTER SET utf8,
+COLLATE utf8_general_ci;
+
+/*Для связи многие ко многим нужна дополнительная таблица*/
+CREATE TABLE ProdAndCat (
+  ID bigint(20) NOT NULL AUTO_INCREMENT,
+  IDProd bigint(20) DEFAULT NULL,
+  IDCat bigint(20) DEFAULT NULL,
+  PRIMARY KEY (ID)
+)
+ENGINE = INNODB,
+AUTO_INCREMENT = 5,
+AVG_ROW_LENGTH = 4096,
+CHARACTER SET utf8,
+COLLATE utf8_general_ci;
+
+ALTER TABLE ProdAndCat
+ADD CONSTRAINT FK_ProdAndCat_IDProd FOREIGN KEY (IDProd)
+REFERENCES Product (ID) ON DELETE SET NULL ON UPDATE CASCADE;
+
+ALTER TABLE ProdAndCat
+ADD CONSTRAINT FK_ProdAndCat_IDCat FOREIGN KEY (IDCat)
+REFERENCES Category (ID) ON DELETE SET NULL ON UPDATE CASCADE;
+
+/*Сам запрос для вывода пар*/
+SELECT c.Name,p.Name FROM ProdAndCat pak
+  LEFT JOIN Category c ON pak.IDCat = c.ID
+  LEFT JOIN Product p ON pak.IDProd = p.ID
