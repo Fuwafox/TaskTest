@@ -18,36 +18,43 @@ namespace TestTask
             try
             {
                 double result  ;
+                if (arrayCoordinates.Length == 0 || arrayCoordinates == null)
+                    throw new Exception("Вы ничего не ввели.");
                 if (arrayCoordinates.Length < 4)
                     throw new Exception("Точка - это не фигура.");
                 else
                 {
-                    if (arrayCoordinates.Length == 4)
-                    {
-                        if (CheckEmpty(arrayCoordinates))
-                            throw new Exception("Точка - это не фигура.");
-                        else
-                        {
-                            result = CicrleSquare(arrayCoordinates);
-                            return result;
-                        }
-                    }
+                    if (arrayCoordinates.Length % 2 != 0)
+                        throw new Exception("Кажется вы потеряли одну координату.");
                     else
                     {
-                        if (arrayCoordinates.Length == 6)
+                        if (arrayCoordinates.Length == 4)
                         {
                             if (CheckEmpty(arrayCoordinates))
-                                throw new Exception("Две из трёх координат заполнины 0. Площадь треугольника не возможно посчитать по одному отрезку");
+                                throw new Exception("Точка - это не фигура.");
                             else
                             {
-                                result = STriangle(arrayCoordinates);
+                                result = CicrleSquare(arrayCoordinates);
                                 return result;
                             }
                         }
                         else
                         {
-                            result = SquarePolygon(arrayCoordinates);
-                            return result;
+                            if (arrayCoordinates.Length == 6)
+                            {
+                                if (CheckEmpty(arrayCoordinates))
+                                    throw new Exception("Две из трёх точек cовпадают по координатам. Площадь треугольника не возможно посчитать по одному отрезку");
+                                else
+                                {
+                                    result = STriangle(arrayCoordinates);
+                                    return result;
+                                }
+                            }
+                            else
+                            {
+                                result = SquarePolygon(arrayCoordinates);
+                                return result;
+                            }
                         }
                     }
                 }
@@ -67,12 +74,15 @@ namespace TestTask
         {
             int j = 0;
             bool result = false;
-            for (int i = 0; i < (arrayCoordinates.Length / 2) ; i++)
-            { 
-                if (arrayCoordinates[i,0] == 0 && arrayCoordinates[i, 1] == 0) 
-                    j++;
+            for (int i = 0; i < (arrayCoordinates.Length / 2)-1 ; i++)
+            {
+                for (int k = i+1 ; k < (arrayCoordinates.Length / 2); k++)
+                {
+                   if ((arrayCoordinates[i,0] == arrayCoordinates[k,0]) && (arrayCoordinates[i, 1] == arrayCoordinates[k, 1]))
+                       j++;
+                }
             }
-            if (j >= 2)
+            if (j >= 1)
                 result = true;
             return result; 
         }
