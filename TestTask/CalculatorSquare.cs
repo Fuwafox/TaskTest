@@ -13,40 +13,40 @@ namespace TestTask
         /// <param name="arrayСoordinates"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public static double CalculatorSquare(double[,] arrayСoordinates)
+        public static double CalculatorSquare(double[,] arrayCoordinates)
         {
             try
             {
                 double result  ;
-                if (arrayСoordinates.Length < 4)
+                if (arrayCoordinates.Length < 4)
                     throw new Exception("Точка - это не фигура.");
                 else
                 {
-                    if (arrayСoordinates.Length == 4)
+                    if (arrayCoordinates.Length == 4)
                     {
-                        if (CheckEmpty(arrayСoordinates))
+                        if (CheckEmpty(arrayCoordinates))
                             throw new Exception("Точка - это не фигура.");
                         else
                         {
-                            result = CicrleSquare(arrayСoordinates);
+                            result = CicrleSquare(arrayCoordinates);
                             return result;
                         }
                     }
                     else
                     {
-                        if (arrayСoordinates.Length == 6)
+                        if (arrayCoordinates.Length == 6)
                         {
-                            if (CheckEmpty(arrayСoordinates))
+                            if (CheckEmpty(arrayCoordinates))
                                 throw new Exception("Две из трёх координат заполнины 0. Площадь треугольника не возможно посчитать по одному отрезку");
                             else
                             {
-                                result = STriangle(arrayСoordinates);
+                                result = STriangle(arrayCoordinates);
                                 return result;
                             }
                         }
                         else
                         {
-                            result = SquarePolygon(arrayСoordinates);
+                            result = SquarePolygon(arrayCoordinates);
                             return result;
                         }
                     }
@@ -63,13 +63,13 @@ namespace TestTask
         /// </summary>
         /// <param name="arrayСoordinates"></param>
         /// <returns></returns>
-        public static bool CheckEmpty(double[,] arrayСoordinates)
+        public static bool CheckEmpty(double[,] arrayCoordinates)
         {
             int j = 0;
             bool result = false;
-            for (int i = 0; i < (arrayСoordinates.Length / 2) ; i++)
+            for (int i = 0; i < (arrayCoordinates.Length / 2) ; i++)
             { 
-                if (arrayСoordinates[i,0] == 0 && arrayСoordinates[i, 1] == 0) 
+                if (arrayCoordinates[i,0] == 0 && arrayCoordinates[i, 1] == 0) 
                     j++;
             }
             if (j >= 2)
@@ -82,13 +82,13 @@ namespace TestTask
         /// <param name="arrayСoordinates"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public static double CicrleSquare(double[,] arrayСoordinates)
+        public static double CicrleSquare(double[,] arrayCoordinates)
         {
             double _radius;
             double result;
             try
             {
-                _radius = СalculationoftheSegment(arrayСoordinates[0, 0], arrayСoordinates[0, 1], arrayСoordinates[1, 0], arrayСoordinates[1, 1]);
+                _radius = СalculationoftheSegment(arrayCoordinates[0, 0], arrayCoordinates[0, 1], arrayCoordinates[1, 0], arrayCoordinates[1, 1]);
                 result = double.Pi * Math.Pow(_radius, 2);
                 return result;
             }
@@ -128,15 +128,15 @@ namespace TestTask
         /// <param name="arrayСoordinates"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public static double STriangle(double[,] arrayСoordinates)
+        public static double STriangle(double[,] arrayCoordinates)
         {
             double A, B, C;
             double result;
             try
             { 
-                A = СalculationoftheSegment(arrayСoordinates[0, 0], arrayСoordinates[0, 1], arrayСoordinates[1, 0], arrayСoordinates[1, 1]);
-                C = СalculationoftheSegment(arrayСoordinates[0, 0], arrayСoordinates[0, 1], arrayСoordinates[2, 0], arrayСoordinates[2, 1]);
-                B = СalculationoftheSegment(arrayСoordinates[1, 0], arrayСoordinates[1, 1], arrayСoordinates[2, 0], arrayСoordinates[2, 1]);
+                A = СalculationoftheSegment(arrayCoordinates[0, 0], arrayCoordinates[0, 1], arrayCoordinates[1, 0], arrayCoordinates[1, 1]);
+                C = СalculationoftheSegment(arrayCoordinates[0, 0], arrayCoordinates[0, 1], arrayCoordinates[2, 0], arrayCoordinates[2, 1]);
+                B = СalculationoftheSegment(arrayCoordinates[1, 0], arrayCoordinates[1, 1], arrayCoordinates[2, 0], arrayCoordinates[2, 1]);
                 if (!СheckingForRightAngles(A, B, C))
                     result = SquareTreugolnikaOnthreesides(A, B, C);
                 else
@@ -285,17 +285,17 @@ namespace TestTask
         /// <param name="arrayСoordinates"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public static double SquarePolygon(double[,] arrayСoordinates)
+        public static double SquarePolygon(double[,] arrayCoordinates)
         {
             double result;
             double sum1 = 0, sum2 = 0;
             try
             {
-                for (int i = 0; i < (arrayСoordinates.Length/2)-1 ; i++)
+                for (int i = 0; i < (arrayCoordinates.Length/2)-1 ; i++)
                 {
-                    sum1 = sum1 + arrayСoordinates[i, 0] * arrayСoordinates[i + 1, 1] - arrayСoordinates[i + 1, 0] * arrayСoordinates[i, 1];
+                    sum1 = sum1 + arrayCoordinates[i, 0] * arrayCoordinates[i + 1, 1] - arrayCoordinates[i + 1, 0] * arrayCoordinates[i, 1];
                 }
-                sum2 = sum1 + (arrayСoordinates[(arrayСoordinates.Length / 2) - 1, 0] * arrayСoordinates[0, 1]) - (arrayСoordinates[(arrayСoordinates.Length / 2) - 1, 1] * arrayСoordinates[0, 0]);
+                sum2 = sum1 + (arrayCoordinates[(arrayCoordinates.Length / 2) - 1, 0] * arrayCoordinates[0, 1]) - (arrayCoordinates[(arrayCoordinates.Length / 2) - 1, 1] * arrayCoordinates[0, 0]);
                 result = 0.5*Math.Abs(sum2);
                 return result;
             }
