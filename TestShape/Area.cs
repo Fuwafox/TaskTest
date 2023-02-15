@@ -7,17 +7,27 @@ using TestWithSOLID.Class;
 
 namespace TestWithSOLID
 {
+    /// <summary>
+    /// Класс взаимодействия с пользователем
+    /// </summary>
     public static class Area
     {
-
-        public static double CalculationSquare(List<Point> points)
+        /// <summary>
+        /// Метод рассчета площади
+        /// </summary>
+        /// <param name="mas"></param> на вход двумерный массив вещественных чисел
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public static double CalculationSquare(double[,] mas)
         {
             try
             {
-                if ((points.Count < 2) || (points is null))
+                if ((mas.Length/2 < 2) || (mas is null) || (mas.Length% 2 != 0))
                     throw new Exception("Слишком мало параметров для вычисления.");
                 else
                 {
+                    List<Point> points = new List<Point>();
+                    points = Adapter.ListPoint(mas);
                     if (CheckEmpty(points))
                         throw new Exception("Повторяющиеся точки.");
                     else
@@ -46,6 +56,11 @@ namespace TestWithSOLID
 
         }
 
+        /// <summary>
+        /// Проверка на дубликаты точек
+        /// </summary>
+        /// <param name="points"></param>
+        /// <returns></returns>
         private static bool CheckEmpty (List<Point> points) 
         {
             bool result = false;
@@ -56,6 +71,13 @@ namespace TestWithSOLID
 
         }
 
+        /// <summary>
+        /// Создание фигуры в зависимости от входных параметров
+        /// </summary>
+        /// <param name="segments"></param>
+        /// <param name="points"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         private static IShape ConstructorShape(List<double> segments = null, List<Point> points = null)
         {
             if (segments is not null)

@@ -9,6 +9,9 @@ using TestWithSOLID.Interface;
 
 namespace TestWithSOLID.Class.Shape
 {
+    /// <summary>
+    /// Фигура треугольник
+    /// </summary>
     public class Triangle:IShape
     {
         public double A { get;}
@@ -21,7 +24,11 @@ namespace TestWithSOLID.Class.Shape
             this.B = b;
             this.C = c;
         }
-
+        /// <summary>
+        /// Вычисление площади
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public double Square()
         {
             try
@@ -37,6 +44,11 @@ namespace TestWithSOLID.Class.Shape
 
         }
 
+        /// <summary>
+        /// Провера прямоугльного треугольника
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public bool СheckingForRightAngles()
         {
             bool result = false;

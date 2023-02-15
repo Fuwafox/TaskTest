@@ -9,6 +9,9 @@ using TestWithSOLID.Interface;
 
 namespace TestWithSOLID.Class.Shape
 {
+    /// <summary>
+    /// Фигура окружность
+    /// </summary>
     public class Circle : IShape
     {
         public double Radius { get;}
@@ -17,6 +20,11 @@ namespace TestWithSOLID.Class.Shape
             this.Radius = radius;
         }
         
+        /// <summary>
+        /// Вычисление площади по радиусу
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public double Square()
         {
             double result;

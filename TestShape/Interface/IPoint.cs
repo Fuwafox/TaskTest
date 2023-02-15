@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace TestWithSOLID.Interface
 {
+    /// <summary>
+    /// Интерфейс точка
+    /// </summary>
     public interface IPoint
     {
         public double X { get; set; }

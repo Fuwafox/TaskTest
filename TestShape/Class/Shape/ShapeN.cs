@@ -3,6 +3,9 @@ using TestWithSOLID.Interface;
 
 namespace TestWithSOLID.Class.Shape
 {
+    /// <summary>
+    /// Неопределенная фигура
+    /// </summary>
     public class ShapeN:IShape
     {
         public List<IPoint> ListPoint { get;}
@@ -10,6 +13,12 @@ namespace TestWithSOLID.Class.Shape
         {
             this.ListPoint = new List<IPoint>(listpoint);
         }
+
+        /// <summary>
+        /// Вычисление площади по точкам
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public double Square()
         {
             double result;

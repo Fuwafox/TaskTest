@@ -8,6 +8,9 @@ using TestWithSOLID.Interface;
 
 namespace TestWithSOLID.Class
 {
+    /// <summary>
+    /// Класс точек
+    /// </summary>
     public class Point:IPoint,IEquatable<Point>
     {
         public double X { get; set; }
