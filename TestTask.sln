@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestTask", "TestTask\TestTa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestTestTask", "TestTestTask\TestTestTask.csproj", "{F75A6B9C-4572-4CD9-B1EE-4074224F527C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestShape", "TestWithSOLID\TestShape.csproj", "{A5024821-D99B-467F-BBD7-6BC8A2609F0D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{F75A6B9C-4572-4CD9-B1EE-4074224F527C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F75A6B9C-4572-4CD9-B1EE-4074224F527C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F75A6B9C-4572-4CD9-B1EE-4074224F527C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5024821-D99B-467F-BBD7-6BC8A2609F0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5024821-D99B-467F-BBD7-6BC8A2609F0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5024821-D99B-467F-BBD7-6BC8A2609F0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5024821-D99B-467F-BBD7-6BC8A2609F0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
