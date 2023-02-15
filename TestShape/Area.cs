@@ -24,8 +24,6 @@ namespace TestShape
                 
                     List<Point> points = new List<Point>();
                     points = Adapter.ListPoint(mas);
-                   // CheckEmpty(points);                       
-                    
                         if (points.Count > 3)
                         {
                             var shape = ConstructorShape(points);
@@ -45,19 +43,6 @@ namespace TestShape
             }
 
         }
-
-        /// <summary>
-        /// Проверка на дубликаты точек
-        /// </summary>
-        /// <param name="points"></param>
-        /// <returns></returns>
-     /*   private static CheckEmpty(List<Point> points) 
-        {
-            IEnumerable<Point> listcur = points.Distinct();
-            if (listcur.Count()<points.Count())
-                throw new Exception("Повторяющиеся точки.");
-
-        }*/
 
         /// <summary>
         /// Создание фигуры в зависимости от входных параметров
