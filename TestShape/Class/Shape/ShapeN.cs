@@ -1,7 +1,6 @@
-﻿using TestTask.Interface;
-using TestWithSOLID.Interface;
+﻿using TestShape.Interface;
 
-namespace TestWithSOLID.Class.Shape
+namespace TestShape.Class.Shape
 {
     /// <summary>
     /// Неопределенная фигура

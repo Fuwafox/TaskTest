@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using TestWithSOLID.Interface;
+using TestShape.Interface;
 
-namespace TestWithSOLID.Class
+namespace TestShape.Class
 {
     /// <summary>
     /// Класс точек

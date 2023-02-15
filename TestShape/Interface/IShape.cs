@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TestWithSOLID.Interface;
-using TestWithSOLID.Class;
 
-namespace TestTask.Interface
+namespace TestShape.Interface
 {
     /// <summary>
     /// Общий интерфейс для фигур

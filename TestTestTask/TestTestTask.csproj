@@ -16,8 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TestTask\TestTask.csproj" />
-    <ProjectReference Include="..\TestWithSOLID\TestShape.csproj" />
+    <ProjectReference Include="..\TestShape\TestShape.csproj" />
   </ItemGroup>
 
 </Project>

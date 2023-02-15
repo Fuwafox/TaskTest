@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TestWithSOLID.Interface;
+using TestShape.Interface;
 
-namespace TestWithSOLID.Class.Method
+namespace TestShape.Class.Method
 {
     static class Calculator
     {

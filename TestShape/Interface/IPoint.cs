@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestWithSOLID.Interface
+namespace TestShape.Interface
 {
     /// <summary>
     /// Интерфейс точка

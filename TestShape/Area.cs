@@ -1,11 +1,10 @@
 ﻿using System.Runtime.ConstrainedExecution;
-using TestTask.Interface;
-using TestWithSOLID.Class.Method;
-using TestWithSOLID.Class.Shape;
-using TestWithSOLID.Interface;
-using TestWithSOLID.Class;
+using TestShape.Class.Method;
+using TestShape.Class.Shape;
+using TestShape.Class;
+using TestShape.Interface;
 
-namespace TestWithSOLID
+namespace TestShape
 {
     /// <summary>
     /// Класс взаимодействия с пользователем
@@ -22,19 +21,14 @@ namespace TestWithSOLID
         {
             try
             {
-                if ((mas.Length/2 < 2) || (mas is null) || (mas.Length% 2 != 0))
-                    throw new Exception("Слишком мало параметров для вычисления.");
-                else
-                {
+                
                     List<Point> points = new List<Point>();
                     points = Adapter.ListPoint(mas);
-                    if (CheckEmpty(points))
-                        throw new Exception("Повторяющиеся точки.");
-                    else
-                    {
+                   // CheckEmpty(points);                       
+                    
                         if (points.Count > 3)
                         {
-                            var shape = ConstructorShape(null, points);
+                            var shape = ConstructorShape(points);
                             return shape.Square();
                         }
                         else
@@ -43,11 +37,7 @@ namespace TestWithSOLID
                             var shape = ConstructorShape(listSegment);
                             return shape.Square();
                         }
-                                                
-                           
-                    }
 
-                }
             }
             catch(Exception ex) 
             {
@@ -61,15 +51,13 @@ namespace TestWithSOLID
         /// </summary>
         /// <param name="points"></param>
         /// <returns></returns>
-        private static bool CheckEmpty (List<Point> points) 
+     /*   private static CheckEmpty(List<Point> points) 
         {
-            bool result = false;
             IEnumerable<Point> listcur = points.Distinct();
             if (listcur.Count()<points.Count())
-                result= true;
-            return result;
+                throw new Exception("Повторяющиеся точки.");
 
-        }
+        }*/
 
         /// <summary>
         /// Создание фигуры в зависимости от входных параметров
@@ -78,7 +66,7 @@ namespace TestWithSOLID
         /// <param name="points"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        private static IShape ConstructorShape(List<double> segments = null, List<Point> points = null)
+        private static IShape ConstructorShape(List<double> segments)
         {
             if (segments is not null)
             {
@@ -88,15 +76,18 @@ namespace TestWithSOLID
                     return new Triangle(segments.First(), segments[1], segments.Last());
             }
             else
-            {
-                if (points is not null)
+                throw new Exception("Нет параметров - нет площади.");
+        }
+
+        private static IShape ConstructorShape(List<Point> points = null)
+        {
+            if (points is not null)
                 {
                     return new ShapeN(points);
                 }
                 else
                     throw new Exception("Нет параметров - нет площади.");
-            }
-            
+
         }
 
     }

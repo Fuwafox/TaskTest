@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TestTask.Interface;
-using TestWithSOLID.Class.Method;
-using TestWithSOLID.Interface;
+﻿using TestShape.Class.Method;
+using TestShape.Interface;
 
-namespace TestWithSOLID.Class.Shape
+namespace TestShape.Class.Shape
 {
     /// <summary>
     /// Фигура треугольник
