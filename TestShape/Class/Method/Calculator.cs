@@ -9,54 +9,14 @@ namespace TestShape.Class.Method
 {
     static class Calculator
     {
-        public static IEnumerable<double> СalculationoftheSegment(List<Point> listpoint)
+        public static double СalculationoftheSegment(Point p1, Point p2)
         {
-            try
-            {
-                List<double> result= new List<double>();
-                double segment = 0;
-                if (listpoint.Count == 2)
-                {
-                    segment = Math.Sqrt(Math.Pow(listpoint.Last().X - listpoint.First().X, 2) +
-                                            Math.Pow(listpoint.Last().Y - listpoint.First().Y, 2));
-                    result.Add(segment);
-                }
-                else
-                {
-                    for (int i = 0; i < listpoint.Count(); i++)
-                    {
-
-                        if (i == listpoint.Count() - 1)
-                        {
-                            segment = Math.Sqrt(Math.Pow(listpoint.Last().X - listpoint.First().X, 2) +
-                                                 Math.Pow(listpoint.Last().Y - listpoint.First().Y, 2));                            
-                        }
-                        else
-                            segment = Math.Sqrt(Math.Pow(listpoint[i + 1].X - listpoint[i].X, 2) +
-                                                 Math.Pow(listpoint[i + 1].Y - listpoint[i].Y, 2));
-                        result.Add(segment);
-                    }
-                }
-                return result;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("При вычислении длинны отрезка произошла ошибка", ex);
-            }
+            return Math.Sqrt(Math.Pow(p2.X - p1.X, 2) + Math.Pow(p2.Y - p1.Y, 2));
         }
 
         public static double Sum(double seg1, double seg2)
         {
-            double result = 0;
-            try
-            {
-                result = Math.Pow(seg1, 2) + Math.Pow(seg2, 2);
-                return result;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message, ex);
-            }
+            return Math.Pow(seg1, 2) + Math.Pow(seg2, 2);
 
         }
 

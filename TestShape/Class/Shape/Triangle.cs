@@ -12,11 +12,11 @@ namespace TestShape.Class.Shape
         public double B { get;}
         public double C { get;}
 
-        public Triangle(double a, double b, double c)
+        public Triangle(Point a, Point b, Point c)
         {
-            this.A = a;
-            this.B = b;
-            this.C = c;
+            this.A = Calculator.СalculationoftheSegment(a, b);
+            this.B = Calculator.СalculationoftheSegment(b, c);
+            this.C = Calculator.СalculationoftheSegment(a, c);
         }
         /// <summary>
         /// Вычисление площади
@@ -25,16 +25,8 @@ namespace TestShape.Class.Shape
         /// <exception cref="Exception"></exception>
         public double Square()
         {
-            try
-            {
-                double perimeter = Calculator.СalculationoPerimeter(A, B, C);
-                double result = Math.Sqrt(perimeter * (perimeter - A) * (perimeter - B) * (perimeter - C));
-                return result;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message, ex);
-            }
+            double _perimeter = Calculator.СalculationoPerimeter(A, B, C);
+            return Math.Sqrt(_perimeter * (_perimeter - A) * (_perimeter - B) * (_perimeter - C));
 
         }
 
@@ -45,12 +37,12 @@ namespace TestShape.Class.Shape
         /// <exception cref="Exception"></exception>
         public bool СheckingForRightAngles()
         {
-            bool result = false;
+            bool _result = false;
             try
             {
                 if ((Math.Pow(A, 2) == Calculator.Sum(C, B)) || (Math.Pow(C, 2) == Calculator.Sum(A, B)) || (Math.Pow(B, 2) == Calculator.Sum(C, A)))
-                    result = true;
-                return result;
+                    _result = true;
+                return _result;
             }
             catch (Exception ex)
             {

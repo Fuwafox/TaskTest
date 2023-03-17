@@ -1,4 +1,5 @@
 using TestShape;
+using TestShape.Class;
 
 
 
@@ -13,7 +14,7 @@ namespace TestTestTask
         [TestMethod]
         public void TestSquareTreugolnikaOnthreesides()
         {
-            double[,] mas = new double[,] { { -0.763, 7.738 }, { 17.188, 17.115 }, { 7.447, 36.052 } };
+            List<Point> mas = new List<Point>() { new Point() { X = -0.763, Y = 7.738 }, new Point() { X = 17.188, Y = 17.115 }, new Point() { X = 7.447, Y = 36.052 } };
             double result = Area.CalculationSquare(mas);
             Assert.AreEqual(215.6, Math.Round(result,1));
         }
@@ -26,41 +27,34 @@ namespace TestTestTask
         [TestMethod]
         public void TestSquarePolygon()
         {
-            double[,] mas = new double[,]{ { 0.000,0.000}, { -0.763, 7.738 }, { 17.188, 17.115 }, { 7.447, 36.052 }, { 14.154, 58.584 }, { -0.942, 37.863 }, { -3.633, 47.647 },
-                                            { -17.659, 27.007 },{ -2.428, 19.790 },{ -11.183, 0.338 } } ;
+            List<Point> mas = new List<Point>(){new Point() { X = 0.000, Y = 0.000}, new Point(){X = -0.763, Y = 7.738 }, new Point(){ X = 17.188, Y = 17.115 },new Point() { X = 7.447, Y = 36.052 }, 
+                                                new Point(){ X = 14.154, Y = 58.584 },new Point() {X = -0.942, Y = 37.863 }, new Point(){ X = -3.633, Y = 47.647 },new Point(){ X = -17.659, Y = 27.007 },
+                                                new Point(){ X = -2.428, Y = 19.790 },new Point(){ X = -11.183, Y = 0.338 } } ;
             double result = Area.CalculationSquare(mas);
             Assert.AreEqual(817.894, Math.Round(result, 3));
 
         }
 
-
         /// <summary>
-        /// Проверка на исключение при не достаточном кол-ве параметров
+        /// Тест метода, запускающего рассчет площади окружности, если получены координаты 3-х точек, где 2 повторяются
         /// </summary>
         [TestMethod]
-        public void TestSquarePolygonExeptionMin()
+        public void TestMethodCalculatorSquareCicrlewithCopy()
         {
-            double[,] mas = new double[,]{{ -11.183, 0.338 } };
-            var exception = Assert.ThrowsException<Exception>(() => Area.CalculationSquare(mas));
-
-            Assert.AreEqual("При вычислении площади произошла ошибка: Слишком мало параметров для вычисления.", exception.Message);
-
-
+            List<Point> mas = new List<Point>() { new Point() { X = 1, Y = 2 }, new Point() { X = 0.0, Y = 0.0 }, new Point() { X = 0.0, Y = 0.0 } };
+            double result = Area.CalculationSquare(mas);
+            Assert.AreEqual(15.7, Math.Round(result, 1));
         }
 
         /// <summary>
-        /// ПРоверка на повторяющиеся точки
+        /// Проверка исключения при недостаточном кол-ве параметров
         /// </summary>
         [TestMethod]
-        public void TestSquarePolygonExeptionCopy()
+        public void TestMethodCalculatorSquarePoint()
         {
-            double[,] mas = new double[,] { { 0.000,0.000}, { 0.000,0.000}, { 17.188, 17.115 }, { 7.447, 36.052 }, { 7.447, 36.052 }, { -0.942, 37.863 }, { -3.633, 47.647 },
-                                            { -17.659, 27.007 },{ -2.428, 19.790 },{ -11.183, 0.338 } };
+            List<Point> mas = new List<Point>() { new Point() { X = 0.0, Y = 0.0 }, new Point() { X = 0.0, Y = 0.0 } };
             var exception = Assert.ThrowsException<Exception>(() => Area.CalculationSquare(mas));
-
-            Assert.AreEqual("При вычислении площади произошла ошибка: Повторяющиеся точки.", exception.Message);
-
-
+            Assert.AreEqual("При вычислении площади произошла ошибка: Недостаточно точек для посчета площади.", exception.Message);
         }
 
         /// <summary>
@@ -69,7 +63,7 @@ namespace TestTestTask
         [TestMethod]
         public void TestMethodCalculatorSquareCicrle()
         {
-            double[,] mas = new double[,] { { 1, 2 }, { 0.0, 0.0 } };
+            List<Point> mas = new List<Point>() { new Point() {X = 1, Y = 2 }, new Point() { X = 0.0, Y = 0.0 } };
             double result = Area.CalculationSquare(mas);
             Assert.AreEqual(15.7, Math.Round(result, 1));
         }

@@ -17,61 +17,25 @@ namespace TestShape
         /// <param name="mas"></param> на вход двумерный массив вещественных чисел
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public static double CalculationSquare(double[,] mas)
+        public static double CalculationSquare(IEnumerable<Point> points)
         {
             try
             {
-                
-                    List<Point> points = new List<Point>();
-                    points = Adapter.ListPoint(mas);
-                        if (points.Count > 3)
-                        {
-                            var shape = ConstructorShape(points);
-                            return shape.Square();
-                        }
-                        else
-                        {
-                            var listSegment = new List<double>(Calculator.СalculationoftheSegment(points));
-                            var shape = ConstructorShape(listSegment);
-                            return shape.Square();
-                        }
+                IShape _shape = null;
+                var _points = points.Distinct().ToList();
+                switch (_points.Count()) 
+                {
+                    case 2 : _shape = new Circle(_points); break;
+                    case 3 : _shape = new Triangle(_points[0], _points[1], _points[2]); break;
+                    default: _shape = new ShapeN(_points); break;
+                }
+                return _shape.Square();
 
             }
             catch(Exception ex) 
             {
                 throw new Exception("При вычислении площади произошла ошибка: "+ex.Message, ex);
             }
-
-        }
-
-        /// <summary>
-        /// Создание фигуры в зависимости от входных параметров
-        /// </summary>
-        /// <param name="segments"></param>
-        /// <param name="points"></param>
-        /// <returns></returns>
-        /// <exception cref="Exception"></exception>
-        private static IShape ConstructorShape(List<double> segments)
-        {
-            if (segments is not null)
-            {
-                if (segments.Count() == 1)
-                    return new Circle(segments.First());
-                else
-                    return new Triangle(segments.First(), segments[1], segments.Last());
-            }
-            else
-                throw new Exception("Нет параметров - нет площади.");
-        }
-
-        private static IShape ConstructorShape(List<Point> points = null)
-        {
-            if (points is not null)
-                {
-                    return new ShapeN(points);
-                }
-                else
-                    throw new Exception("Нет параметров - нет площади.");
 
         }
 

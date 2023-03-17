@@ -1,16 +1,17 @@
-﻿using TestShape.Interface;
+﻿using TestShape.Class.Method;
+using TestShape.Interface;
 
 namespace TestShape.Class.Shape
 {
     /// <summary>
     /// Фигура окружность
     /// </summary>
-    public class Circle : IShape
+    internal class Circle : IShape
     {
         public double Radius { get;}
-        public Circle(double radius) 
+        public Circle(IEnumerable<Point> points) 
         {
-            this.Radius = radius;
+            this.Radius = Calculator.СalculationoftheSegment(points.First(),  points.Last());
         }
         
         /// <summary>
@@ -20,16 +21,7 @@ namespace TestShape.Class.Shape
         /// <exception cref="Exception"></exception>
         public double Square()
         {
-            double result;
-            try
-            {
-                result = double.Pi * Math.Pow(Radius, 2);
-                return result;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message, ex);
-            }
+            return double.Pi * Math.Pow(Radius, 2);          
         }
 
     }
