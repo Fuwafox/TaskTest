@@ -1,5 +1,6 @@
 using TestShape;
 using TestShape.Class;
+using TestShape.Class.Shape;
 
 
 
@@ -15,7 +16,7 @@ namespace TestTestTask
         public void TestSquareTreugolnikaOnthreesides()
         {
             List<Point> mas = new List<Point>() { new Point() { X = -0.763, Y = 7.738 }, new Point() { X = 17.188, Y = 17.115 }, new Point() { X = 7.447, Y = 36.052 } };
-            double result = Area.CalculationSquare(mas);
+            double result = Area.CalculationSquare(mas); 
             Assert.AreEqual(215.6, Math.Round(result,1));
         }
 
@@ -67,6 +68,17 @@ namespace TestTestTask
             double result = Area.CalculationSquare(mas);
             Assert.AreEqual(15.7, Math.Round(result, 1));
         }
+
+        /// <summary>
+        /// Тест метода при получении null
+        /// </summary>
+        [TestMethod]
+        public void TestNull()
+        {
+            var exception = Assert.ThrowsException<Exception>(() => Area.CalculationSquare(null));
+            Assert.AreEqual("При вычислении площади произошла ошибка: C null площадь не посчитаешь!", exception.Message);
+        }
+
 
     }
 }

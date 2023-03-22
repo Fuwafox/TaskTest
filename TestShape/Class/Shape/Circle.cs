@@ -6,9 +6,9 @@ namespace TestShape.Class.Shape
     /// <summary>
     /// Фигура окружность
     /// </summary>
-    internal class Circle : IShape
+    public class Circle : IShape
     {
-        public double Radius { get;}
+        internal readonly double Radius;
         public Circle(IEnumerable<Point> points) 
         {
             this.Radius = Calculator.СalculationoftheSegment(points.First(),  points.Last());

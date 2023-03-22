@@ -8,9 +8,9 @@ namespace TestShape.Class.Shape
     /// </summary>
     public class Triangle:IShape
     {
-        public double A { get;}
-        public double B { get;}
-        public double C { get;}
+        internal readonly double A;
+        internal readonly double B;
+        internal readonly double C;
 
         public Triangle(Point a, Point b, Point c)
         {

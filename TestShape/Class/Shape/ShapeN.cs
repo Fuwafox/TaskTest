@@ -7,8 +7,8 @@ namespace TestShape.Class.Shape
     /// </summary>
     public class ShapeN:IShape
     {
-        public List<Point> ListPoint { get;}
-        public ShapeN(List<Point> points = null) 
+        internal readonly List<Point> ListPoint;
+        public ShapeN(List<Point>? points = null) 
         {
             if ((points == null) || (points.Count() == 1))
                 throw new Exception("Недостаточно точек для посчета площади.");

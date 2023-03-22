@@ -21,7 +21,9 @@ namespace TestShape
         {
             try
             {
-                IShape _shape = null;
+                IShape? _shape = null;
+                if (points is null) 
+                    throw new Exception("C null площадь не посчитаешь!");
                 var _points = points.Distinct().ToList();
                 switch (_points.Count()) 
                 {
